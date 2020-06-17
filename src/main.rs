@@ -32,6 +32,14 @@ pub extern "C" fn _start() -> ! {
 
 	x86_64::instructions::interrupts::int3();
 
+	unsafe {
+		// 0xdeadbeef is an invalid mem addr
+		// this will trigger a page fault!
+		// we not yet have a page fault interrupt handler, so this will trigger
+		// a double fault.
+		*(0xdeadbeef as *mut u64) = 42;
+	};
+
 	println!("This OS does nothing yet and will never be useful at all");
 
 	#[cfg(test)] // conditional compilation
