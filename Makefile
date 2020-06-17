@@ -17,3 +17,6 @@ img:
 run:
 	# qemu-system-x86_64 -drive format=raw,file=target/x86_64-beckeros/debug/bootimage-beckeros.bin
 	cargo xrun
+
+test:
+	cargo xtest
