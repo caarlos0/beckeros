@@ -20,3 +20,6 @@ run:
 
 test:
 	cargo xtest
+
+test-lib:
+	cargo xtest --lib

@@ -26,7 +26,12 @@ fn panic(info: &PanicInfo) -> ! {
 // `_start` by default
 #[no_mangle] // makes the function be really called _start
 pub extern "C" fn _start() -> ! {
+	beckeros::init();
+
 	println!("Welcome to BeckerOS {}\n\n", "0.0.1");
+
+	x86_64::instructions::interrupts::int3();
+
 	println!("This OS does nothing yet and will never be useful at all");
 
 	#[cfg(test)] // conditional compilation

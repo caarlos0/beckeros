@@ -7,10 +7,11 @@
 
 use core::panic::PanicInfo;
 
+pub mod interrupts;
 pub mod serial;
 pub mod vga_buffer;
 
-func init() {
+pub fn init() {
 	interrupts::init_idt();
 }
 
@@ -49,6 +50,7 @@ pub fn exit_qemu(code: QemuExitCode) {
 #[cfg(test)]
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
+	init();
 	test_main();
 	loop {}
 }
